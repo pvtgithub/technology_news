@@ -1,0 +1,214 @@
+<main>
+    <div class="container">
+        <app-header></app-header>
+        <div class="content">
+            <div class="content-main">
+                <div class="row">
+                    <form class="c-form box-shadow was-validated" [formGroup]="infoFormData">
+                        <ul>
+                            <li class="title">会員情報編集</li>
+                            <!-- <li class="box-err">
+                                <div class="box-err-content">Hiển thị lỗi chung lại đây</div>
+                            </li> -->
+                            <li class="form-group row d-flex">
+                                <label class="col-form-label col-sm-2"><i class="relative">アカウント名:<span
+                                            class="note-red">*</span></i></label>
+                                <div class="col-sm col-sm-10">
+                                    <input type="text" class="form-control"
+                                        [ngClass]="{'border-red' : infoFormData.controls.employeeAccount.invalid && infoFormData.controls.employeeAccount.touched}"
+                                        formControlName="employeeAccount" #employeeAccount>
+                                    <div class="invalid-feedback"
+                                        *ngIf="infoFormData.controls['employeeAccount'].hasError('required') && infoFormData.controls['employeeAccount'].touched">
+                                        アカウント名
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="form-group row d-flex">
+                                <label class="col-form-label col-sm-2"><i class="relative">グループ:<span
+                                            class="note-red">*</span></i></label>
+                                <div class="col-sm col-sm-10">
+                                    <select class="form-control" formControlName="departmentId"
+                                        [ngClass]="{'border-red' : infoFormData.controls.departmentId.invalid && infoFormData.controls.departmentId.touched}">
+                                        <option value="">選択してください</option>
+                                        <option *ngFor="let i of dataListDepartment.departments"
+                                            value="{{i.departmentId}}">{{i.departmentName}}
+                                        </option>
+                                    </select>
+                                    <div class="invalid-feedback"
+                                        *ngIf="infoFormData.controls['departmentId'].hasError('required') && infoFormData.controls['departmentId'].touched">
+                                        アカウント名
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="form-group row d-flex">
+                                <label class="col-form-label col-sm-2"><i class="relative">氏名:<span
+                                            class="note-red">*</span></i></label>
+                                <div class="col-sm col-sm-10">
+                                    <input type="text" class="form-control"
+                                        [ngClass]="{'border-red' : infoFormData.controls.employeeName.invalid && infoFormData.controls.employeeName.touched}"
+                                        formControlName="employeeName">
+                                    <div class="invalid-feedback"
+                                        *ngIf="infoFormData.controls['employeeName'].hasError('required') && infoFormData.controls['employeeName'].touched">
+                                        氏名
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="form-group row d-flex">
+                                <label class="col-form-label col-sm-2"><i class="relative">カタカナ氏名:<span
+                                            class="note-red">*</span></i></label>
+                                <div class="col-sm col-sm-10">
+                                    <input type="text" class="form-control" formControlName="employeeNameKata"
+                                        [ngClass]="{'border-red' : infoFormData.controls.employeeNameKata.invalid && infoFormData.controls.employeeNameKata.touched}">
+                                    <div class="invalid-feedback"
+                                        *ngIf="infoFormData.controls['employeeNameKata'].hasError('required') && infoFormData.controls['employeeNameKata'].touched">
+                                        カタカナ氏名
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="form-group row d-flex">
+                                <label class="col-form-label col-sm-2"><i class="relative">生年月日:<span
+                                            class="note-red">*</span></i></label>
+                                <div class="col-sm col-sm-10">
+                                    <div class="input-group date datepicker d-flex">
+                                        <input bsDatepicker class="form-control" readonly="" type="text"
+                                            [bsConfig]="bsConfig"
+                                            [ngClass]="{'border-red' : infoFormData.controls.employeeBirthday.invalid && infoFormData.controls.employeeBirthday.touched}"
+                                            formControlName="employeeBirthday">
+                                        <span class="input-group-addon"><i
+                                                class="glyphicon glyphicon-calendar"></i></span>
+                                    </div>
+                                    <div class="invalid-feedback"
+                                        *ngIf="infoFormData.controls['employeeBirthday'].hasError('required') && infoFormData.controls['employeeBirthday'].touched">
+                                        生年月日
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="form-group row d-flex">
+                                <label class="col-form-label col-sm-2"><i class="relative">メールアドレス:<span
+                                            class="note-red">*</span></i></label>
+                                <div class="col-sm col-sm-10">
+                                    <input type="text" class="form-control" formControlName="employeeEmail"
+                                        [ngClass]="{'border-red' : infoFormData.controls.employeeEmail.invalid && infoFormData.controls.employeeEmail.touched}">
+                                    <div class="invalid-feedback"
+                                        *ngIf="infoFormData.controls['employeeEmail'].hasError('required') && infoFormData.controls['employeeEmail'].touched">
+                                        メールアドレス
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="form-group row d-flex">
+                                <label class="col-form-label col-sm-2"><i class="relative">電話番号:<span
+                                            class="note-red">*</span></i></label>
+                                <div class="col-sm col-sm-10">
+                                    <input type="text" class="form-control" formControlName="employeeTelephone"
+                                        [ngClass]="{'border-red' : infoFormData.controls.employeeTelephone.invalid && infoFormData.controls.employeeTelephone.touched}">
+                                    <div class="invalid-feedback"
+                                        *ngIf="infoFormData.controls['employeeTelephone'].hasError('required') && infoFormData.controls['employeeTelephone'].touched">
+                                        電話番号
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="form-group row d-flex">
+                                <label class="col-form-label col-sm-2"><i class="relative">パスワード:<span
+                                            class="note-red">*</span></i></label>
+                                <div class="col-sm col-sm-10">
+                                    <input type="text" class="form-control" formControlName="employeePassword"
+                                        [ngClass]="{'border-red' : infoFormData.controls.employeePassword.invalid && infoFormData.controls.employeePassword.touched}">
+                                    <div class="invalid-feedback"
+                                        *ngIf="infoFormData.controls['employeePassword'].hasError('required') && infoFormData.controls['employeePassword'].touched">
+                                        パスワード
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="form-group row d-flex">
+                                <label class="col-form-label col-sm-2"><i class="relative">パスワード（確認）:</i></label>
+                                <div class="col-sm col-sm-10">
+                                    <input type="text" class="form-control" formControlName="employeePasswordAgain"
+                                        [ngClass]="{'border-red' : infoFormData.controls.employeePasswordAgain.invalid && infoFormData.controls.employeePasswordAgain.touched}">
+                                    <div class="invalid-feedback"
+                                        *ngIf="infoFormData.controls['employeePasswordAgain'].hasError('required') && infoFormData.controls['employeePasswordAgain'].touched">
+                                        パスワード（確認）
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="title mt-12"><a href="#!">日本語能力</a></li>
+                            <li class="form-group row d-flex">
+                                <label class="col-form-label col-sm-2"><i class="relative">資格:</i></label>
+                                <div class="col-sm col-sm-10">
+                                    <select class="form-control" formControlName="certificationName"
+                                        [ngClass]="{'border-red' : infoFormData.controls.certificationName.invalid && infoFormData.controls.certificationName.touched}">
+                                        <option value="">選択してください</option>
+                                        <option *ngFor="let i of dataListCertification.certifications"
+                                            value="{{i.certificationName}}">{{i.certificationName}}
+                                        </option>
+                                    </select>
+                                    <div class="invalid-feedback"
+                                        *ngIf="infoFormData.controls['certificationName'].hasError('required') && infoFormData.controls['certificationName'].touched">
+                                        資格
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="form-group row d-flex">
+                                <label class="col-form-label col-sm-2"><i class="relative">資格交付日:<span
+                                            class="note-red">*</span></i></label>
+                                <div class="col-sm col-sm-10">
+                                    <div id="datepicker" class="input-group date datepicker d-flex"
+                                        data-date-format="dd-mm-yyyy">
+                                        <input bsDatepicker class="form-control" readonly="" type="text"
+                                            formControlName="startDateCertification"
+                                            [bsConfig]="bsConfig"
+                                            [ngClass]="{'border-red' : infoFormData.controls.startDateCertification.invalid && infoFormData.controls.startDateCertification.touched}">
+                                        <span class="input-group-addon"><i
+                                                class="glyphicon glyphicon-calendar"></i></span>
+                                    </div>
+                                    <div class="invalid-feedback"
+                                        *ngIf="infoFormData.controls['startDateCertification'].hasError('required') && infoFormData.controls['startDateCertification'].touched">
+                                        資格交付日
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="form-group row d-flex">
+                                <label class="col-form-label col-sm-2"><i class="relative">失効日:<span
+                                            class="note-red">*</span></i></label>
+                                <div class="col-sm col-sm-10">
+                                    <div id="datepicker" class="input-group date datepicker d-flex"
+                                        data-date-format="dd-mm-yyyy">
+                                        <input bsDatepicker class="form-control" readonly="" type="text"
+                                            formControlName="endDateCertification"
+                                            [bsConfig]="bsConfig"
+                                            [ngClass]="{'border-red' : infoFormData.controls.endDateCertification.invalid && infoFormData.controls.endDateCertification.touched}">
+                                        <span class="input-group-addon"><i
+                                                class="glyphicon glyphicon-calendar"></i></span>
+                                    </div>
+                                    <div class="invalid-feedback"
+                                        *ngIf="infoFormData.controls['endDateCertification'].hasError('required') && infoFormData.controls['endDateCertification'].touched">
+                                        失効日
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="form-group row d-flex">
+                                <label class="col-form-label col-sm-2"><i class="relative">点数:</i></label>
+                                <div class="col-sm col-sm-10">
+                                    <input type="text" class="form-control" formControlName="scoreCertification"
+                                        [ngClass]="{'border-red' : infoFormData.controls.scoreCertification.invalid && infoFormData.controls.scoreCertification.touched}">
+                                    <div class="invalid-feedback"
+                                        *ngIf="infoFormData.controls['scoreCertification'].hasError('required') && infoFormData.controls['scoreCertification'].touched">
+                                        点数
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="form-group row d-flex">
+                                <div class="btn-group col-sm col-sm-10 ml">
+                                    <button type="button" class="btn btn-primary btn-sm" (click)="onSubmit()"
+                                        [disabled]="!infoFormData.valid">確認</button>
+                                    <button type="button" class="btn btn-secondary btn-sm"
+                                        onClick="location.href = './ADM002.html';return false;">戻る</button>
+                                </div>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <app-footer></app-footer>
+    </div>
+</main>
